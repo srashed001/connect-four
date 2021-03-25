@@ -9,22 +9,22 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-let board = []; // array of rows, each row is array of cells  (board[y][x])
+const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // let result = [];
-  board = new Array(HEIGHT).fill(new Array(WIDTH).fill('null'))
+  for (let y = 0; y < HEIGHT; y++){
+    board.push(new Array(WIDTH).fill('null'))
+  }
   // for (let i = 0; i < HEIGHT; i++){
   //   let val = new Array(WIDTH).fill('null')
   //   // for (let j = 0; j < WIDTH; j++){
   //   //   val.push('null');
-  //   // }
-  //   board.push(val);
-  // } 
+  //   // 
+  // } b
   return board;
   // console.log(board)
   //   const newBoard = board.forEach(val => {
@@ -91,8 +91,12 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
+  let yVar = undefined
+  for (let y = 0; y < HEIGHT; y++){
+    if(board[y][x] === 'null') yVar = y
+  } return (yVar)
+
   // TODO: write the real version of this, rather than always returning 0
-  return 2;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -108,6 +112,9 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
+  msg = `Player ${currPlayer} wins`;
+  alert(msg);
+
   // TODO: pop up alert message
 }
 
@@ -139,6 +146,19 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+
+  // loop through y arrays - see if every array in y array comesback !== null
+  
+  // console.log(board)
+  function checkForTie(){
+    for (let y = 0; y < HEIGHT; y++){
+      // console.log(board[y])
+      return board[y].every(x => x !== 'null')
+    }
+  };
+  if (checkForTie()) endGame(); 
+
+  // console.log(checkForTie())
 
 
   // switch players
