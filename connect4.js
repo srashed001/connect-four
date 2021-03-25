@@ -112,7 +112,7 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  msg = `Player ${currPlayer} wins`;
+  // msg = `Player ${currPlayer} wins`;
   alert(msg);
 
   // TODO: pop up alert message
@@ -156,7 +156,7 @@ function handleClick(evt) {
       return board[y].every(x => x !== 'null')
     }
   };
-  if (checkForTie()) endGame(); 
+  if (checkForTie()) endGame('The game has resulted in a tie'); 
 
   // console.log(checkForTie())
 
